@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy 23rd Birthday Lia ❤️</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ffd6e8, #ffb3d9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Balon animasi */
+      .balloon {
+        position: fixed;
+        font-size: 3rem;
+        opacity: 0.8;
+        animation: float 8s infinite;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Emoji ulang tahun */
+      .stars::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(2px 2px at 10% 20%, #fff, transparent),
+          radial-gradient(1px 1px at 30% 40%, #fff, transparent),
+          radial-gradient(2px 2px at 50% 10%, #fff, transparent),
+          radial-gradient(1px 1px at 70% 60%, #fff, transparent),
+          radial-gradient(2px 2px at 90% 30%, #fff, transparent);
+        opacity: 0;
+        animation: twinkle 12s linear infinite;
+        pointer-events: none;
+      }
+      @keyframes twinkle {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-120px);
+        }
+      }
+
+      /* LIA stars */
+      .lia {
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3.5rem;
+        letter-spacing: 1.2rem;
+        opacity: 0;
+        animation: glow 3s ease forwards;
+        display: none;
+      }
+      .lia span {
+        text-shadow:
+          0 0 15px #fff,
+          0 0 30px #ff7eb3;
+      }
+      @keyframes glow {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 25px;
+        padding: 45px 35px 65px;
+        max-width: 480px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+        animation: fadeIn 2s ease;
+      }
+
+      @media (max-width: 768px) {
+        .card {
+          padding: 30px 20px 50px;
+          width: 95%;
+          max-height: 90vh;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        h2 {
+          font-size: 1rem;
+        }
+
+        button {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+
+        .photo {
+          width: 150px;
+          height: 150px;
+        }
+
+        .lia {
+          top: 10%;
+          font-size: 2.5rem;
+          letter-spacing: 0.8rem;
+        }
+      }
+
+      .lock {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        z-index: 5;
+      }
+
+      .lock p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 6px;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        font-weight: 400;
+      }
+      .date {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        opacity: 0.9;
+      }
+      .countdown {
+        margin: 18px 0 22px;
+        font-size: 0.95rem;
+      }
+
+      button {
+        padding: 13px 30px;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #ff4b5c, #ff1e56);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      .pin-input-group {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 15px 0;
+        flex-wrap: wrap;
+      }
+
+      .pin-input {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        text-align: center;
+        border: 2px solid #ff4b5c;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .pin-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .pin-error {
+        color: #ff6b6b;
+        font-size: 0.9rem;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .pin-input {
+          width: 45px;
+          height: 45px;
+          font-size: 1.3rem;
+        }
+
+        .pin-input-group {
+          gap: 8px;
+        }
+      }
+
+      .hidden-message {
+        display: none;
+        margin-top: 22px;
+      }
+
+      .cake {
+        font-size: 4rem;
+        cursor: pointer;
+      }
+      #flame {
+        animation: flicker 1s infinite;
+      }
+      @keyframes flicker {
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .photo {
+        margin-top: 20px;
+        width: 180px;
+        height: 180px;
+        border-radius: 20px;
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: 2s ease;
+      }
+      .photo.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .firework {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        border-radius: 50%;
+        animation: explode 1.2s ease-out forwards;
+      }
+      @keyframes explode {
+        from {
+          transform: scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: scale(15);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="lia" id="lia"><span>L</span><span>I</span><span>A</span></div>
+
+    <audio id="bgm" loop>
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="card">
+      <div class="lock" id="lock">
+        <div>
+          <p style="margin-bottom: 12px">🔒 Masukkan PIN untuk membuka</p>
+          <div class="pin-input-group">
+            <input
+              type="password"
+              class="pin-input"
+              id="pin1"
+              maxlength="1"
+              inputmode="numeric"
+            />
+            <input
+              type="password"
+              class="pin-input"
+              id="pin2"
+              maxlength="1"
+              inputmode="numeric"
+            />
+            <input
+              type="password"
+              class="pin-input"
+              id="pin3"
+              maxlength="1"
+              inputmode="numeric"
+            />
+            <input
+              type="password"
+              class="pin-input"
+              id="pin4"
+              maxlength="1"
+              inputmode="numeric"
+            />
+          </div>
+          <button onclick="checkPin()">Buka 🔑</button>
+          <div class="pin-error" id="pinError"></div>
+        </div>
+      </div>
+
+      <h1>🎂 Happy 23rd Birthday 🎂</h1>
+      <h2>Lia Dwi Lestari ❤️</h2>
+      <div class="date">1 Februari 2026</div>
+      <div class="countdown" id="countdown"></div>
+
+      <button onclick="showMessage()">Buka Kartu Ucapan 💌</button>
+
+      <div class="hidden-message" id="message">
+        <div class="cake" onclick="blowCandle()">
+          🎂<span id="flame">🔥</span>
+        </div>
+        <p id="typewriter">
+          Selamat ulang tahun ke-23, sayangku 🥰<br /><br />
+          Terima kasih sudah hadir dan membuat hidup aku<br />
+          penuh warna. Semoga di usia baru ini, semua<br />
+          mimpimu semakin dekat dengan nyata.
+        </p>
+        <div class="signature">— Dari aku, yang mencintaimu tanpa jeda 💖</div>
+        <p
+          id="finalText"
+          style="margin-top: 14px; font-weight: 600; opacity: 0"
+        ></p>
+        <img src="foto-kita.jpeg" class="photo" id="photo" />
+      </div>
+    </div>
+
+    <script>
+      const targetDate = new Date("2026-02-01T00:00:00").getTime();
+      const countdownEl = document.getElementById("countdown");
+      const lock = document.getElementById("lock");
+
+      function startCountdown() {
+        setInterval(() => {
+          const now = Date.now();
+          const diff = targetDate - now;
+          if (diff <= 0) {
+            lock.style.display = "none";
+            countdownEl.innerHTML = "🎉 Hari ini hari spesialmu 🎉";
+            return;
+          }
+          const d = Math.floor(diff / 86400000);
+          const h = Math.floor(diff / 3600000) % 24;
+          const m = Math.floor(diff / 60000) % 60;
+          const s = Math.floor(diff / 1000) % 60;
+          countdownEl.innerHTML = `⏳ ${d} hari ${h} jam ${m} menit ${s} detik`;
+        }, 1000);
+      }
+
+      startCountdown();
+
+      // PIN checker
+      const correctPin = "0201"; // PIN: 0201 (tanggal ulang tahun Lia)
+      const pinInputs = document.querySelectorAll(".pin-input");
+
+      pinInputs.forEach((input, index) => {
+        input.addEventListener("keyup", (e) => {
+          if (e.key === "Backspace") {
+            input.value = "";
+            if (index > 0) pinInputs[index - 1].focus();
+          } else if (/[0-9]/.test(e.key)) {
+            input.value = e.key;
+            if (index < pinInputs.length - 1) pinInputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const paste = (e.clipboardData || window.clipboardData).getData(
+            "text",
+          );
+          if (/^[0-9]{4}$/.test(paste)) {
+            paste.split("").forEach((digit, i) => {
+              if (i < pinInputs.length) {
+                pinInputs[i].value = digit;
+              }
+            });
+            pinInputs[pinInputs.length - 1].focus();
+          }
+        });
+      });
+
+      function checkPin() {
+        const pin = Array.from(pinInputs)
+          .map((input) => input.value)
+          .join("");
+        const errorEl = document.getElementById("pinError");
+
+        if (pin.length !== 4) {
+          errorEl.textContent = "Masukkan 4 digit PIN";
+          return;
+        }
+
+        if (pin === correctPin) {
+          lock.style.display = "none";
+          errorEl.textContent = "";
+        } else {
+          errorEl.textContent = "PIN salah, coba lagi 🔒";
+          pinInputs.forEach((input) => (input.value = ""));
+          pinInputs[0].focus();
+        }
+      }
+
+      // Allow Enter to submit PIN
+      pinInputs[pinInputs.length - 1].addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkPin();
+      });
+
+      // Buat balon dan emoji ulang tahun
+      function createBalloons() {
+        const balloons = ["🎈", "🎉", "🎊"];
+        setInterval(() => {
+          const balloon = document.createElement("div");
+          balloon.className = "balloon";
+          balloon.textContent =
+            balloons[Math.floor(Math.random() * balloons.length)];
+          balloon.style.left = Math.random() * 100 + "vw";
+          balloon.style.animationDuration = 5 + Math.random() * 4 + "s";
+          balloon.style.animationDelay = Math.random() * 2 + "s";
+          document.body.appendChild(balloon);
+          setTimeout(() => balloon.remove(), 12000);
+        }, 500);
+      }
+
+      createBalloons();
+
+      function unlockPreview() {
+        lock.style.display = "none";
+        countdownEl.innerHTML = "✨ Mode preview aktif";
+      }
+
+      function showMessage() {
+        document.getElementById("message").style.display = "block";
+        fadeInMusic();
+        typeText();
+      }
+
+      function fadeInMusic() {
+        const audio = document.getElementById("bgm");
+        audio.volume = 0;
+        audio.play();
+        let v = 0;
+        const fade = setInterval(() => {
+          if (v < 1) {
+            v += 0.02;
+            audio.volume = Math.min(v, 1);
+          } else clearInterval(fade);
+        }, 200);
+      }
+
+      function blowCandle() {
+        document.getElementById("flame").style.display = "none";
+        document.getElementById("photo").classList.add("show");
+        document.getElementById("lia").style.display = "block";
+        showFinalText();
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+        for (let i = 0; i < 8; i++) firework();
+      }
+
+      function showFinalText() {
+        const ft = document.getElementById("finalText");
+        const text = "Will you keep growing old with me? 💗";
+        ft.style.opacity = 1;
+        ft.innerText = text;
+      }
+
+      function firework() {
+        const f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.top = Math.random() * 50 + "vh";
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1200);
+      }
+
+      const textEl = document.getElementById("typewriter");
+      function typeText() {
+        // Teks sudah ditampilkan, tidak perlu animasi
+      }
+    </script>
+  </body>
+</html>
